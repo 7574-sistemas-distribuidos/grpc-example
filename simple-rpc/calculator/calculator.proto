@@ -2,9 +2,7 @@ syntax = "proto3";
 
 package calculator;
 
-// The greeting service definition.
 service Operations {
-  // Sends a greeting
   rpc Sum (Operands) returns (OperationResult) {}
   rpc Diff (Operands) returns (OperationResult) {}
   rpc Mult (Operands) returns (OperationResult) {}
@@ -14,10 +12,9 @@ service Operations {
 message Operands {
   float param1 = 1;
   float param2 = 2;
-  // float param3 = 3;
 }
 
-// The response message containing the greetings
 message OperationResult {
   float result = 1;
 }
+

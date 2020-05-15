@@ -31,21 +31,21 @@ func (s *server) Sum(ctx context.Context, in *pb.Operands) (*pb.OperationResult,
 }
 
 func (s *server) Diff(ctx context.Context, in *pb.Operands) (*pb.OperationResult, error) {
-	log.Printf("[SERVER] Executing Sum Operation")
+	log.Printf("[SERVER] Executing Diff Operation")
 	return &pb.OperationResult{
 		Result: in.Param1 - in.Param2,
 	}, nil
 }
 
 func (s *server) Mult(ctx context.Context, in *pb.Operands) (*pb.OperationResult, error) {
-	log.Printf("[SERVER] Executing Sum Operation")
+	log.Printf("[SERVER] Executing Mult Operation")
 	return &pb.OperationResult{
 		Result: in.Param1 * in.Param2,
 	}, nil
 }
 
 func (s *server) Div(ctx context.Context, in *pb.Operands) (*pb.OperationResult, error) {
-	log.Printf("[SERVER] Executing Sum Operation")
+	log.Printf("[SERVER] Executing Div Operation")
 	if in.Param2 == 0 {
 		return nil, fmt.Errorf("Division by zero")
 	}
