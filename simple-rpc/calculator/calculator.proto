@@ -1,4 +1,5 @@
 syntax = "proto3";
+option go_package = "github.com/7574-sistemas-distribuidos/grpc-example/client";
 
 package calculator;
 

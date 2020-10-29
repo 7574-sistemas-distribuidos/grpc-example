@@ -9,7 +9,8 @@ COPY calculator $GOPATH/src/github.com/7574-sistemas-distribuidos/grpc-example/e
 COPY server $GOPATH/src/github.com/7574-sistemas-distribuidos/grpc-example/environment/server
 
 # Code compilation
-RUN protoc -Icalculator --go_out=plugins=grpc:calculator calculator/calculator.proto && \
+RUN export GO111MODULE=on && \
+    protoc -Icalculator --go_out=plugins=grpc:calculator calculator/calculator.proto && \
     go build $(go list ./...) && go install $(go list ./...)
 
 CMD $GOPATH/bin/server

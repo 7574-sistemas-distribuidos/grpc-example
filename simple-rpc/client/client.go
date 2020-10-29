@@ -15,13 +15,6 @@ const (
 	address = "server:50051"
 )
 
-type CalculatorFunc func(ctx context.Context, in *pb.Operands, opts ...grpc.CallOption) (*pb.OperationResult, error)
-
-type CalculatorOperation struct {
-	Description string
-	Callback    CalculatorFunc
-}
-
 func main() {
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
@@ -31,25 +24,48 @@ func main() {
 	defer conn.Close()
 	c := pb.NewOperationsClient(conn)
 
-	operations := []*CalculatorOperation{
-		&CalculatorOperation{"Sum", c.Sum},
-		&CalculatorOperation{"Diff", c.Diff},
-		&CalculatorOperation{"Mult", c.Mult},
-		&CalculatorOperation{"Div", c.Div},
-	}
-
 	for _, operation := range operations {
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
 
-		log.Printf("Executing operation %s", operation.Description)
-		result, err := operation.Callback(ctx, &pb.Operands{Param1: 2, Param2: 3})
-
-		log.Printf("Operation result: %v", result)
-		if err != nil {
-			log.Fatalf("could not execute operation %v: %v", operation.Description, err)
+		operands := &pb.Operands{
+			Param1: 2,
+			Param2: 3,
 		}
-		time.Sleep(1 * time.Second)
+
+		// Sum
+		log.Printf("Executing operation sum")
+		sumResult, err := c.Sum(ctx, operands)
+		log.Printf("Sum result: %v", result)
+		if err != nil {
+			log.Fatalf("could not execute operation sum: %v", err)
+		}
+
+		// Diff
+		log.Printf("Executing operation diff")
+		sumResult, err := c.Sum(ctx, operands)
+		log.Printf("Diff result: %v", result)
+		if err != nil {
+			log.Fatalf("could not execute operation sum: %v", err)
+		}
+
+		// Mult
+		log.Printf("Executing operation mult")
+		sumResult, err := c.Sum(ctx, operands)
+		log.Printf("Mult result: %v", result)
+		if err != nil {
+			log.Fatalf("could not execute operation mult: %v", err)
+		}
+
+		// Div
+		log.Printf("Executing operation div")
+		sumResult, err := c.Sum(ctx, operands)
+		log.Printf("Div result: %v", result)
+		if err != nil {
+			log.Fatalf("could not execute operation div: %v", err)
+		}
+
+		time.Sleep(5 * time.Second)
 	}
 
 }
