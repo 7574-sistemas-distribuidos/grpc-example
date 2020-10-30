@@ -15,21 +15,31 @@ const (
 )
 
 func main() {
-	// Set up a connection to the server.
+	// Set up a connection to the gRPC server
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
+
+	// Create gRPC stub
 	c := pb.NewOperationsClient(conn)
 
+	// Golang context pattern used to handle timeouts against the server.
+	// Defined with a 5 seconds timeout but not used in the example
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
+	// Define the operands that are going to be used to do the basic calculator
+	// operations. Move them to config parameters to let the user test different
+	// parameters combinations (e.g division by zero)
 	operands := &pb.Operands{
 		Param1: 2,
 		Param2: 3,
 	}
+
+	// Execute operations available one by one to show how to interact
+	// with server via the stub
 
 	// Sum
 	log.Printf("Executing operation sum")
