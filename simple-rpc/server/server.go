@@ -1,5 +1,3 @@
-//go:generate protoc -I ../helloworld --go_out=plugins=grpc:../helloworld ../helloworld/helloworld.proto
-
 package main
 
 import (
@@ -10,7 +8,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	pb "github.com/7574-sistemas-distribuidos/grpc-example/environment/calculator"
+	pb "github.com/7574-sistemas-distribuidos/grpc-example/simple-rpc/server/calculator"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

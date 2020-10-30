@@ -1,14 +1,11 @@
-//go:generate protoc -I ../helloworld --go_out=plugins=grpc:../helloworld ../helloworld/helloworld.proto
-
 package main
 
 import (
 	"log"
 	"time"
 
-	pb "github.com/7574-sistemas-distribuidos/grpc-example/environment/calculator"
+	pb "github.com/7574-sistemas-distribuidos/grpc-example/simple-rpc/client/calculator"
 	"golang.org/x/net/context"
-	"google.golang.org/grpc"
 )
 
 const (
