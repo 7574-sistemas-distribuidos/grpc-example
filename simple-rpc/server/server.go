@@ -19,7 +19,9 @@ const (
 )
 
 // server is used to implement helloworld.GreeterServer.
-type server struct{}
+type server struct {
+	pb.UnimplementedOperationsServer
+}
 
 func (s *server) Sum(ctx context.Context, in *pb.Operands) (*pb.OperationResult, error) {
 	log.Printf("[SERVER] Executing Sum Operation")

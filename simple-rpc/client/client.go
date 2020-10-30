@@ -5,7 +5,9 @@ import (
 	"time"
 
 	pb "github.com/7574-sistemas-distribuidos/grpc-example/simple-rpc/client/calculator"
+
 	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 )
 
 const (
@@ -21,48 +23,46 @@ func main() {
 	defer conn.Close()
 	c := pb.NewOperationsClient(conn)
 
-	for _, operation := range operations {
-		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-		defer cancel()
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
 
-		operands := &pb.Operands{
-			Param1: 2,
-			Param2: 3,
-		}
-
-		// Sum
-		log.Printf("Executing operation sum")
-		sumResult, err := c.Sum(ctx, operands)
-		log.Printf("Sum result: %v", result)
-		if err != nil {
-			log.Fatalf("could not execute operation sum: %v", err)
-		}
-
-		// Diff
-		log.Printf("Executing operation diff")
-		sumResult, err := c.Sum(ctx, operands)
-		log.Printf("Diff result: %v", result)
-		if err != nil {
-			log.Fatalf("could not execute operation sum: %v", err)
-		}
-
-		// Mult
-		log.Printf("Executing operation mult")
-		sumResult, err := c.Sum(ctx, operands)
-		log.Printf("Mult result: %v", result)
-		if err != nil {
-			log.Fatalf("could not execute operation mult: %v", err)
-		}
-
-		// Div
-		log.Printf("Executing operation div")
-		sumResult, err := c.Sum(ctx, operands)
-		log.Printf("Div result: %v", result)
-		if err != nil {
-			log.Fatalf("could not execute operation div: %v", err)
-		}
-
-		time.Sleep(5 * time.Second)
+	operands := &pb.Operands{
+		Param1: 2,
+		Param2: 3,
 	}
 
+	// Sum
+	log.Printf("Executing operation sum")
+	result, err := c.Sum(ctx, operands)
+	log.Printf("Sum result: %v", result)
+	if err != nil {
+		log.Fatalf("could not execute operation sum: %v", err)
+	}
+	time.Sleep(1 * time.Second)
+
+	// Diff
+	log.Printf("Executing operation diff")
+	result, err = c.Sum(ctx, operands)
+	log.Printf("Diff result: %v", result)
+	if err != nil {
+		log.Fatalf("could not execute operation sum: %v", err)
+	}
+	time.Sleep(1 * time.Second)
+
+	// Mult
+	log.Printf("Executing operation mult")
+	result, err = c.Sum(ctx, operands)
+	log.Printf("Mult result: %v", result)
+	if err != nil {
+		log.Fatalf("could not execute operation mult: %v", err)
+	}
+	time.Sleep(1 * time.Second)
+
+	// Div
+	log.Printf("Executing operation div")
+	result, err = c.Sum(ctx, operands)
+	log.Printf("Div result: %v", result)
+	if err != nil {
+		log.Fatalf("could not execute operation div: %v", err)
+	}
 }
