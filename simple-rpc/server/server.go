@@ -1,5 +1,3 @@
-//go:generate protoc -I ../helloworld --go_out=plugins=grpc:../helloworld ../helloworld/helloworld.proto
-
 package main
 
 import (
@@ -10,7 +8,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	pb "github.com/7574-sistemas-distribuidos/grpc-example/environment/calculator"
+	pb "github.com/7574-sistemas-distribuidos/grpc-example/simple-rpc/server/calculator"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -21,7 +19,9 @@ const (
 )
 
 // server is used to implement helloworld.GreeterServer.
-type server struct{}
+type server struct {
+	pb.UnimplementedOperationsServer
+}
 
 func (s *server) Sum(ctx context.Context, in *pb.Operands) (*pb.OperationResult, error) {
 	log.Printf("[SERVER] Executing Sum Operation")
@@ -60,6 +60,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
+
 	s := grpc.NewServer()
 	pb.RegisterOperationsServer(s, &server{})
 	// Register reflection service on gRPC server.
