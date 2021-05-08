@@ -1,6 +1,5 @@
 syntax = "proto3";
-
-package calculator;
+option go_package = "github.com/7574-sistemas-distribuidos/grpc-example/simple-rpc/calculator";
 
 service Operations {
   rpc Sum (Operands) returns (OperationResult) {}

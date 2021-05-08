@@ -52,7 +52,7 @@ func main() {
 
 	// Diff
 	log.Printf("Executing operation diff")
-	result, err = c.Sum(ctx, operands)
+	result, err = c.Diff(ctx, operands)
 	log.Printf("Diff result: %v", result)
 	if err != nil {
 		log.Fatalf("could not execute operation sum: %v", err)
@@ -61,7 +61,7 @@ func main() {
 
 	// Mult
 	log.Printf("Executing operation mult")
-	result, err = c.Sum(ctx, operands)
+	result, err = c.Mult(ctx, operands)
 	log.Printf("Mult result: %v", result)
 	if err != nil {
 		log.Fatalf("could not execute operation mult: %v", err)
@@ -70,7 +70,7 @@ func main() {
 
 	// Div
 	log.Printf("Executing operation div")
-	result, err = c.Sum(ctx, operands)
+	result, err = c.Div(ctx, operands)
 	log.Printf("Div result: %v", result)
 	if err != nil {
 		log.Fatalf("could not execute operation div: %v", err)
