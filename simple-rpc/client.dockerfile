@@ -14,4 +14,5 @@ RUN cd /client && \
     mkdir /bin/client && \
     go mod vendor && \
     go build -o /opt/client
+
 CMD /opt/client
