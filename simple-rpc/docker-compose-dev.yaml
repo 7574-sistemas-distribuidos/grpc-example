@@ -1,13 +1,9 @@
 version: '3'
 services:
   server:
-    build:
-      context: .
-      dockerfile: server.dockerfile
+    image: simple-rpc-server:latest
 
   client:
-    build:
-      context: .
-      dockerfile: client.dockerfile
+    image: simple-rpc-client:latest
     depends_on:
       - server
