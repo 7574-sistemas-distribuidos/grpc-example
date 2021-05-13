@@ -7,3 +7,8 @@ services:
     image: simple-rpc-client:latest
     depends_on:
       - server
+
+  client-python:
+    image: simple-rpc-client-python:latest
+    depends_on:
+      - server

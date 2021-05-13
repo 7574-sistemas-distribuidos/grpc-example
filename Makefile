@@ -21,6 +21,7 @@ build-base-image:
 
 simple-rpc-docker-image:
 	docker build -f simple-rpc/client.dockerfile -t "simple-rpc-client:latest" .
+	docker build -f simple-rpc/client_python.dockerfile -t "simple-rpc-client-python:latest" .
 	docker build -f simple-rpc/server.dockerfile -t "simple-rpc-server:latest" .
 .PHONY: simple-rpc-docker-image
 
