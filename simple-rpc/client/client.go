@@ -6,7 +6,8 @@ import (
 
 	pb "github.com/7574-sistemas-distribuidos/grpc-example/simple-rpc/client/calculator"
 
-	"golang.org/x/net/context"
+	"context"
+
 	"google.golang.org/grpc"
 )
 

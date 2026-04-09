@@ -1,4 +1,4 @@
-FROM golang:1.23
+FROM golang:1.24
 
 ENV PATH "$PATH:/opt/protoc-3.16.0/bin"
 
