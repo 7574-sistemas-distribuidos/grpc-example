@@ -1,7 +1,19 @@
 module github.com/7574-sistemas-distribuidos/grpc-example/simple-rpc/server
 
+require google.golang.org/grpc v1.80.0
+
 require (
-    google.golang.org/grpc v1.37
+	github.com/7574-sistemas-distribuidos/grpc-example/simple-rpc/server/calculator v0.0.0
+	golang.org/x/net v0.49.0
 )
 
-go 1.16
+require (
+	golang.org/x/sys v0.40.0 // indirect
+	golang.org/x/text v0.33.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20260120221211-b8f7ae30c516 // indirect
+	google.golang.org/protobuf v1.36.11 // indirect
+)
+
+replace github.com/7574-sistemas-distribuidos/grpc-example/simple-rpc/server/calculator v0.0.0 => ../calculator
+
+go 1.24.2

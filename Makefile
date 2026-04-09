@@ -26,14 +26,14 @@ simple-rpc-docker-image:
 .PHONY: simple-rpc-docker-image
 
 simple-rpc-docker-compose-up: simple-rpc-docker-image
-	docker-compose -f simple-rpc/docker-compose-dev.yaml up -d --build
+	docker compose -f simple-rpc/docker-compose-dev.yaml up -d --build
 .PHONY: simple-rpm-docker-compose-up
 
 simple-rpc-docker-compose-down:
-	docker-compose -f simple-rpc/docker-compose-dev.yaml stop -t 1
-	docker-compose -f simple-rpc/docker-compose-dev.yaml down
+	docker compose -f simple-rpc/docker-compose-dev.yaml stop -t 1
+	docker compose -f simple-rpc/docker-compose-dev.yaml down
 .PHONY: simple-rpm-docker-compose-down
 
 simple-rpc-docker-compose-logs:
-	docker-compose -f simple-rpc/docker-compose-dev.yaml logs -f
+	docker compose -f simple-rpc/docker-compose-dev.yaml logs -f
 .PHONY: docker-compose-logs

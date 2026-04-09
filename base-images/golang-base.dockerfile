@@ -1,4 +1,4 @@
-FROM golang:1.16
+FROM golang:1.24
 
 ENV PATH "$PATH:/opt/protoc-3.16.0/bin"
 
@@ -12,6 +12,5 @@ RUN echo "alias ll=\"ls -lF\"" >> ~/.bashrc && \
     mv bin include /opt/protoc-3.16.0 && \
     rm -rf protoc-3.16.0-linux-x86_64.zip readme.txt && \
     # Install grpc plugins to generate Golang code from proto files
-    go get -u google.golang.org/grpc@v1.37.0 && \
-    go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1.0 && \
-    go get -u google.golang.org/protobuf/cmd/protoc-gen-go@v1.26.0
+    go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1.0 && \
+    go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26.0
